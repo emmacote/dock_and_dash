@@ -39,10 +39,6 @@ def get_images():
 @app.route("/logs/<container_name>")
 def get_logs(container_name):
     container = client.containers.get(container_name)
-    print("this is the container from logs...")
-    print(container)
-    print(container.name)
-    print(f"here are the logs....")
     print(container.logs())
     container.logs().decode().split("\n")
     return jsonify(dict(logs=container.logs().decode().split("\n")))
@@ -53,10 +49,8 @@ def get_networks():
     network_list = []
 
     for network in client.networks.list(greedy=True):
-        print()
         network_info = dict(id=network.id, name=network.name, short_id=network.short_id)
-        print(network_info)
-        print(f"containers on this network...")
+
         for container in network.containers:
             print(container.name)
 
