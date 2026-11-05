@@ -17,6 +17,7 @@ def get_containers():
 @app.route("/inactivecontainers")
 def get_inactive_containers():
     containers = client.containers.list(filters=dict(status="exited"))
+    containers = [c.name for c in containers]
     return jsonify(dict(containers=containers))
 
 
@@ -59,3 +60,4 @@ def get_networks():
         network_list.append(network_info)
 
     return jsonify(dict(networks=network_list))
+
