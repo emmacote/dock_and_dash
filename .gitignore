@@ -1,1 +1,7 @@
 backend/dockanddash/__pycache__/
+frontend/.vscode/
+frontend/node_modules/
+front
+frontend/.env
+backend/.idea/
+.env
