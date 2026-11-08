@@ -51,7 +51,7 @@ const msg = ref("Hi there.");
 
     <div class="row">
       <div class="col-sm-12">
-                <div class="tab-content">
+        <div class="tab-content">
           <div class="tab-pane show active" id="images"><ImageDash /></div>
           <div class="tab-pane" id="volumes"><VolumeDash /></div> 
           <div class="tab-pane" id="containers"><ContainerDash /></div>
