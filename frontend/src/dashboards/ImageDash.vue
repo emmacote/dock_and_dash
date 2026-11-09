@@ -10,7 +10,7 @@ const images = ref<Image[]>();
 
 const imageMounting = async function(){
 
-    const url = "http://localhost:5000/images";
+    const url = "/api/images";
     const res = await axios.get(url);
     const data = await res.data;
     images.value = res.data.images;
