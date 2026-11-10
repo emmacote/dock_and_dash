@@ -1,8 +1,6 @@
 <script setup lang="ts">
-interface Image {
-    id: string;
-    tags: string[];
-}
+
+import type { Image } from "../types.ts";
 
 import {ref, onMounted }from "vue";
 import axios from "axios";
