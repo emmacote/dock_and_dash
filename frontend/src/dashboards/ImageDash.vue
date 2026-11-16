@@ -1,7 +1,6 @@
 <script setup lang="ts">
 
 import type { Image } from "../types.ts";
-import {ref } from "vue";
 
 const props = defineProps<{
     images: Image[]

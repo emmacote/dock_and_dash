@@ -7,7 +7,7 @@ import type { Image } from "./types.ts";
 import ImageDash from "./dashboards/ImageDash.vue";
 import axios from "axios";
 
-const images = ref<Image[]>();
+const images = ref<Image[]>([]);
 
 const imageMounting = async function(){
 
