@@ -2,7 +2,7 @@
 
 import { ref, onMounted } from "vue";
 
-import type { Image } from "../types.ts";
+import type { Image } from "./types.ts";
 
 import ImageDash from "./dashboards/ImageDash.vue";
 import axios from "axios";
