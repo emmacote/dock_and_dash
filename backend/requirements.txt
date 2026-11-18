@@ -3,3 +3,4 @@ sqlalchemy
 docker
 flask-cors
 gunicorn
+pytest
