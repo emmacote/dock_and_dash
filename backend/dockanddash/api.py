@@ -2,8 +2,6 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 from . import client
 
-
-
 app = Flask(__name__)
 
 CORS(app)
@@ -29,11 +27,15 @@ def get_volumes():
 
 @app.route("/images")
 def get_images():
-    json_list = [dict(id=image.id, tags=[tag for tag in image.tags]) for image in client.images.list()]
+    string_keys = [ 'Architecture', 'Comment', 'Created', 'Id', 'Os' ]
+
     json_list = []
     for image in client.images.list():
-        image_info = dict(id=image.id, tags=image.tags)
-        json_list.append(image_info)
+        new_ob = dict()
+        for string_key in string_keys:
+            new_ob[string_key] = image.attrs[string_key]
+        json_list.append(new_ob)
+
     return jsonify({"images": json_list})
 
 

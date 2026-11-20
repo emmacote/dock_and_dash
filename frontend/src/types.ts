@@ -1,4 +1,7 @@
 export interface Image {
-    id: string;
-    tags: string[];
+    Id: string;
+    Created: string;
+    Os: string;
+    Architecture: string;
+    Comment: string;
 }

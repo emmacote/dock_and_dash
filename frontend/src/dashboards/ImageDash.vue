@@ -15,13 +15,19 @@ const props = defineProps<{
     <thead>
         <tr>
             <th>Image ID</th>
-            <th>Tags</th>
+            <th>Created</th>
+            <th>OS</th>
+            <th>Architecture</th>
+            <th>Comment</th>
         </tr>
     </thead>
     <tbody>
         <tr v-for="image in images">
-            <td> {{image.id}}</td>
-            <td>{{ image.tags.join(", ") }}</td>
+            <td> {{ image.Id }}</td>
+            <td>{{ image.Created }}</td>
+            <td>{{  image.Os }}</td>
+            <td>{{  image.Architecture }}</td>
+            <td>{{  image.Comment }}</td>
         </tr>
     </tbody>
 </table>
