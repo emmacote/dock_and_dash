@@ -10,20 +10,20 @@ CORS(app)
 
 @app.route("/activecontainers")
 def get_containers():
-    containers = [ c.name for c in client.containers.list()]
+    containers = [ c.attrs for c in client.containers.list()]
     return jsonify(dict(containers=containers))
 
 
 @app.route("/inactivecontainers")
 def get_inactive_containers():
     containers = client.containers.list(filters=dict(status="exited"))
-    containers = [c.name for c in containers]
+    containers = [c.attrs for c in containers]
     return jsonify(dict(containers=containers))
 
 
 @app.route("/volumes")
 def get_volumes():
-    volumes = [v.name for v in client.volumes.list()]
+    volumes = [v.attrs for v in client.volumes.list()]
     return jsonify(dict(volumes=volumes))
 
 
@@ -47,17 +47,6 @@ def get_logs(container_name):
 
 @app.route("/networks")
 def get_networks():
-    network_list = []
-
-    for network in client.networks.list(greedy=True):
-        network_info = dict(id=network.id, name=network.name, short_id=network.short_id)
-
-        for container in network.containers:
-            print(container.name)
-
-        network_containers = [container.name for container in network.containers]
-        network_info["containers"] = network_containers
-        network_list.append(network_info)
-
+    network_list = [network.attrs for network in client.networks.list()]
     return jsonify(dict(networks=network_list))
 
