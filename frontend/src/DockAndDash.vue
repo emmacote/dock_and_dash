@@ -14,7 +14,7 @@ const imageMounting = async function(){
     const url = "/api/images";
     const res = await axios.get(url);
     const data = await res.data;
-    images.value = res.data.images;
+    images.value = data.images;
 };
 
 console.log("Dock and Dash.vue setting up to do image mounting....");
