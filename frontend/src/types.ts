@@ -32,5 +32,9 @@ export interface Container {
 }
 
 export interface Network {
-    
+    Id: string;
+    Name: string;
+    Created: string;
+    Driver: string;
+    Scope: string;
 }
