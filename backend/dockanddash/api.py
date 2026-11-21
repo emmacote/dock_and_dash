@@ -8,16 +8,47 @@ CORS(app)
 
 @app.route("/activecontainers")
 def get_containers():
-    containers = [ c.attrs for c in client.containers.list()]
-    return jsonify(dict(containers=containers))
+    string_keys = [
+        'AppArmorProfile', 'Created',
+        'Driver',          'HostnamePath',
+        'HostsPath',       'Id',
+        'Image',           'LogPath',
+        'MountLabel',      'Name',
+        'Path',            'Platform',
+        'ProcessLabel',    'ResolvConfPath'
+    ]
+    json_list = []
+    for container in client.containers.list():
+        new_ob = dict()
+        for string_key in string_keys:
+            new_ob[string_key] = container.attrs[string_key]
+        json_list.append(new_ob)
+
+    return jsonify({"containers": json_list})
 
 
 @app.route("/inactivecontainers")
 def get_inactive_containers():
-    containers = client.containers.list(filters=dict(status="exited"))
-    containers = [c.attrs for c in containers]
-    return jsonify(dict(containers=containers))
+    string_keys = [
+        'AppArmorProfile', 'Created',
+        'Driver',          'HostnamePath',
+        'HostsPath',       'Id',
+        'Image',           'LogPath',
+        'MountLabel',      'Name',
+        'Path',            'Platform',
+        'ProcessLabel',    'ResolvConfPath'
+    ]
 
+    containers = client.containers.list(filters=dict(status="exited"))
+
+    json_list = []
+    for container in containers:
+        new_ob = dict()
+        for string_key in string_keys:
+            new_ob[string_key] = container.attrs[string_key]
+        json_list.append(new_ob)
+
+    return jsonify({"containers": json_list})
 
 @app.route("/volumes")
 def get_volumes():
@@ -49,6 +80,14 @@ def get_logs(container_name):
 
 @app.route("/networks")
 def get_networks():
-    network_list = [network.attrs for network in client.networks.list()]
-    return jsonify(dict(networks=network_list))
+    string_keys = ['Created', 'Driver', 'Id', 'Name', 'Scope']
+
+    json_list = []
+    for network in client.networks.list():
+        new_ob = dict()
+        for string_key in string_keys:
+            new_ob[string_key] = network.attrs[string_key]
+        json_list.append(new_ob)
+
+    return jsonify({"networks": json_list})
 
